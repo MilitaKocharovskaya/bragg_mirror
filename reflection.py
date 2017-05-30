@@ -1,4 +1,14 @@
 import matplotlib.pyplot as plt
+import os
+
+def save(name='', fmt='png'):
+    pwd = os.getcwd()
+    iPath = './mipt books/2курс/брэгговские зеркала{}'.format(fmt)
+    if not os.path.exists(iPath):
+        os.mkdir(iPath)
+    os.chdir(iPath)
+    plt.savefig('{}.{}'.format(name, fmt), fmt='png')
+    os.chdir(pwd)
 
 n = int(input())    #n - количество значений длин волн
 m1, m2 = map(int(input().split()))    #m1, m2 - количество пар слоев
@@ -37,6 +47,7 @@ plt.plot(x2, y2, label = r'm2 слоев')
 plt.xlabel(r'$длина волны, нм$')
 plt.ylabel(r'$R$')
 plt.title(r'$Зависимость коэффициента отражения от длины волны$')
+save('filename', fmt = 'png')
 #plt.axis([мин длина волны, макс длина волны, минР, максР])
 plt.grid(True)
 plt.show()
